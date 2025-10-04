@@ -20,3 +20,11 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+/.vs
+/addac03e2ac2f62d1a7e766874af16b3/.vs/addac03e2ac2f62d1a7e766874af16b3
+/addac03e2ac2f62d1a7e766874af16b3/addac03e2ac2f62d1a7e766874af16b3.client/obj/Debug
+/addac03e2ac2f62d1a7e766874af16b3/addac03e2ac2f62d1a7e766874af16b3.Server/bin/Debug/net8.0
+/addac03e2ac2f62d1a7e766874af16b3/addac03e2ac2f62d1a7e766874af16b3.Server/obj
+/addac03e2ac2f62d1a7e766874af16b3/Cities/bin/Debug
+/addac03e2ac2f62d1a7e766874af16b3/Cities/Import Schema Logs
+/addac03e2ac2f62d1a7e766874af16b3/Cities/obj/Debug

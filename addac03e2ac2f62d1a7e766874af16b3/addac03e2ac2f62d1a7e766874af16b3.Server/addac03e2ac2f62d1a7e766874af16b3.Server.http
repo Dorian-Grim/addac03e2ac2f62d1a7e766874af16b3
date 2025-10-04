@@ -1,0 +1,5 @@
+@addac03e2ac2f62d1a7e766874af16b3.Server_HostAddress = https://localhost:7123
+
+GET {{addac03e2ac2f62d1a7e766874af16b3.Server_HostAddress}}/api/city/0
+
+###
