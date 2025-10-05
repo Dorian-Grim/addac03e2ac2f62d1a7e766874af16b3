@@ -1,6 +1,8 @@
 using addac03e2ac2f62d1a7e766874af16b3.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
+using System.Text.Json;
 
 namespace addac03e2ac2f62d1a7e766874af16b3.Server.Controllers
 {
@@ -17,7 +19,7 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<City>> AddCity([FromBody] CityBase cityData)
+        public async Task<ActionResult<City>> AddCity([FromBody] City cityData)
         {
             var city = new City 
             { 
@@ -56,14 +58,15 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<CityBase>>> SearchCity([FromQuery] string name)
+        public async Task<ActionResult<IEnumerable<City>>> SearchCity([FromQuery] string name)
         {
             if (string.IsNullOrWhiteSpace(name)) return BadRequest(new { message = "City name is required." });
 
             var results = await context.Cities
             .Where(c => c.Name.Contains(name))
-            .Select(c => new CityBase
+            .Select(c => new City
             {
+                Id = c.Id,
                 Name = c.Name,
                 State = c.State,
                 Country = c.Country,
@@ -75,6 +78,19 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Controllers
 
             if (results.Count == 0) return NotFound(new { message = $"No cities found matching '{name}'." });
             return Ok(results);
+        }
+
+        [HttpGet("restcountries")]
+        public IActionResult GetCountries([FromQuery] string cityName)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "CountryData", "countries.json");
+            if (!System.IO.File.Exists(filePath)) return NotFound(new { message = "Countries data not found." });
+            var json = System.IO.File.ReadAllText(filePath);
+            var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+            var countries = JsonSerializer.Deserialize<List<JsonElement>>(json, options)!;
+            if (string.IsNullOrWhiteSpace(cityName)) return Ok(countries);
+            var filtered = countries.Where(c => c.TryGetProperty("capital", out var nameProp) && nameProp.GetString()?.Contains(cityName, StringComparison.OrdinalIgnoreCase) == true).ToList();
+            return filtered.Count == 0 ? NotFound(new { message = $"Did not find any country with city '{cityName}'." }) : Ok(filtered) ;
         }
     }
 }

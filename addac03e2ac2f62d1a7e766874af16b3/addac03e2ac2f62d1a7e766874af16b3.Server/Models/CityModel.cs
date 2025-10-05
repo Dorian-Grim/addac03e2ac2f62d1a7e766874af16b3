@@ -3,8 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace addac03e2ac2f62d1a7e766874af16b3.Server.Models
 {
-    public class CityBase
+    [Table("City")]
+    public class City
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
         public required string Name { get; set; }
 
         public string? State { get; set; }
@@ -17,15 +21,6 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Models
 
         [Range(1, int.MaxValue, ErrorMessage = "Population must be at least 1.")]
         public long? Population { get; set; }
-    }
-
-
-    [Table("City")]
-    public class City : CityBase
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
     }
 
     public class UpdateCityDto
