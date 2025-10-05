@@ -9,6 +9,11 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "addac03e2ac2f62d1a7e766874a
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Cities", "Cities\Cities.sqlproj", "{37D43A43-39A5-4B57-A840-284974051EBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{278C0C7E-10C9-4A18-BEAE-3E4768DB7A7E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC35D909-5D16-49AC-8B61-CDA25B64750B} = {BC35D909-5D16-49AC-8B61-CDA25B64750B}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +36,10 @@ Global
 		{37D43A43-39A5-4B57-A840-284974051EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37D43A43-39A5-4B57-A840-284974051EBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37D43A43-39A5-4B57-A840-284974051EBB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{278C0C7E-10C9-4A18-BEAE-3E4768DB7A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278C0C7E-10C9-4A18-BEAE-3E4768DB7A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278C0C7E-10C9-4A18-BEAE-3E4768DB7A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278C0C7E-10C9-4A18-BEAE-3E4768DB7A7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
