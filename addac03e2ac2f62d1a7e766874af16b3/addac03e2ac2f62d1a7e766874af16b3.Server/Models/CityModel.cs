@@ -5,7 +5,7 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Models
 {
     public class CityBase
     {
-        public string? Name { get; set; }
+        public required string Name { get; set; }
 
         public string? State { get; set; }
         public string? Country { get; set; }
@@ -16,7 +16,7 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Models
         public DateTime DateEstablished { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Population must be at least 1.")]
-        public int? Population { get; set; }
+        public long? Population { get; set; }
     }
 
 
@@ -25,6 +25,13 @@ namespace addac03e2ac2f62d1a7e766874af16b3.Server.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
+    }
+
+    public class UpdateCityDto
+    {
+        public int Rating { get; set; }
+        public DateTime DateEstablished { get; set; }
+        public long Population { get; set; }
     }
 }
